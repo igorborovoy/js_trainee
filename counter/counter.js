@@ -1,24 +1,30 @@
-function Counter() {
-    let count = 0;
-    return function (clear) {
-        if (clear == true) count = 0;
-        else count++;
-        return count;
-    }
+function createCounter() {
+  let count = 0;
+  return {
+    increment() {count++; return count},
+    decrement() {count--; return count},
+    clear() {count = 0; return count},
+  };
 }
 
-function showCounter() {
-    output.value = counter();
+function incCounter() {
+  output.value = counter.increment();
 }
 
-function clearCounter() {
-    output.value = counter(true);
+function decCounter() {
+  output.value = counter.decrement();
 }
 
+function clearCounter(){
+  output.value = counter.clear();
+}
 
-const counter = Counter();
-const button = document.querySelector('#count-button');
+const counter = createCounter();
+const incButton = document.querySelector('#inc-button');
+const decButton = document.querySelector('#dec-button');
+const clearButton = document.querySelector('#clr-button');
 const output = document.querySelector("#count-input");
-const clearButton = document.querySelector("#clear-button");
+
+incButton.addEventListener('click', incCounter);
+decButton.addEventListener('click', decCounter);
 clearButton.addEventListener('click', clearCounter);
-button.addEventListener('click', showCounter);
