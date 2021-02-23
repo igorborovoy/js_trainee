@@ -1,11 +1,9 @@
 Number.prototype.add = function () {
-  let num = Number(this);
-  return ++num;
+  return this + 1;
 }
 
 Number.prototype.dec = function () {
-  let num = Number(this);
-  return --num;
+  return this - 1;
 }
 
 //-------------------------//
@@ -43,8 +41,14 @@ function sum(a) {
 
 function objFromstr(str) {
   let arr = str.split('.');
+  console.log(arr);
+  let result = arr.reduceRight((prev, curr) => Object.assign({}, [curr, prev]), null);
+
+  console.log(result);
+
 }
 
+objFromstr('a.b.c.d');
 
 //--------------------//
 
@@ -67,12 +71,8 @@ function difference(a, b) {
 difference([1, 2, 3, 4, 5], [4, 5, 6]);
 
 function repeat(a, count) {
-  let b = [];
-  for (let i=0; i<count; i++){
-    b[i] = [...a];
-  }
-  console.log(b.flat());
+  console.log(Array.from({ length: count }, item => a.flat()));
 }
 
-repeat([1, 2, 3], 4);
+repeat([1, 2, 3], 2);
 
