@@ -42,7 +42,9 @@ function sum(a) {
 function objFromstr(str) {
   let arr = str.split('.');
   console.log(arr);
-  let result = arr.reduceRight((prev, curr) => Object.assign({}, [curr, prev]), null);
+  let result = arr.reduceRight((prev, curr) => {
+    return { [curr]: prev };
+  }, null);
 
   console.log(result);
 
