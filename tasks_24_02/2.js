@@ -1,6 +1,6 @@
-Function.prototype.myBind = function(context, ...args){
+Function.prototype.myBind = function (context, ...args) {
   let callback = this;
-  return function(){
+  return function () {
     return callback.call(context, ...args);
   }
 }
@@ -16,10 +16,27 @@ const b = {
   name: 'another'
 }
 
-function show(){
-  console.log(this);
+
+
+function myObjectCreate1(proto) {
+  let obj = {};
+  Object.setPrototypeOf(obj, proto);
+  return obj;
 }
 
-show();
-const newFunc = show.myBind(b, 1, 2);
-console.log(newFunc());
+function myObjectCreate2(proto) {
+  function ObjCreate() { };
+  ObjCreate.prototype = proto;
+  return new ObjCreate();
+}
+
+function myObjectAssign(obj, ...args) {
+  args.forEach((elem) => {
+    for (let key in elem) {
+      obj[key] = elem[key];
+    }
+  });
+  return obj;
+}
+
+console.log(myObjectAssign({}, { a: 1 }, { b: 2 }, { c: 3 }));
