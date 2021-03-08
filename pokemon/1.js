@@ -1,5 +1,16 @@
 const URL = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
 
+class HTTPRequest {
+  async getRequest(url) {
+    let response = await fetch(url, { method: 'GET' });
+    let data = await response.json();
+    return data;
+  }
+}
+
+
+
+
 async function sendRequest(url) {
   let response = await fetch(url, {
     method: 'GET'

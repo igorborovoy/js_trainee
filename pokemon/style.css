@@ -21,9 +21,19 @@ body {
 }
 
 .fav-button {
-
+  border-radius: 4px;
+  transition-duration: 0.4s;
 }
 
 .del-button {
-  
+  border-radius: 4px;
+  transition-duration: 0.4s;
+}
+
+.del-button:hover{
+  background-color:red
+}
+
+.fav-button:hover {
+  background-color: gold;
 }
